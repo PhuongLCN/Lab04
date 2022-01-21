@@ -1,22 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardText, CardTitle, CardBody } from "reactstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 
-class Dishdetail extends Component {
-
-    render() {
-        const { dish } = this.props;
+    const DishDetail = (props) => {        
         return (
             <div className="row">
 
-                {this.renderDish(dish)}
+                <RenderDish dish={props.dish} />
 
             </div>
         );
     }
 
 
-    renderDish = (dish) => {
+    function RenderDish({dish}) {
         if (dish != null) {
             return (
                 <div className='container'>
@@ -32,7 +29,7 @@ class Dishdetail extends Component {
                         </div>
                         <div className="col-12 col-md-5 m-1" >
                             <h4>Comments</h4>
-                            {this.renderComments(dish.comments)}
+                            <RenderComments comments={dish.comments} />
                         </div>
                     </div>
                 </div>
@@ -43,7 +40,7 @@ class Dishdetail extends Component {
         }
     }
 
-    renderComments = (comments) => {
+    function RenderComments({comments}) {
 
         if (comments != null) {
             const com = comments.map(co => {
@@ -66,13 +63,13 @@ class Dishdetail extends Component {
             return (<div></div>)
         }
     }
-    formatDate(date) {
-        const option = { year: 'numeric', month: 'short', day: 'numeric' };
-        const date1 = new Date(date)
-        const newdate = date1.toLocaleDateString("en-US", option)
-        return newdate;
+    // formatDate(date) {
+    //     const option = { year: 'numeric', month: 'short', day: 'numeric' };
+    //     const date1 = new Date(date)
+    //     const newdate = date1.toLocaleDateString("en-US", option)
+    //     return newdate;
 
-    }
-}
+    // }
 
-export default Dishdetail;
+
+export default DishDetail;
